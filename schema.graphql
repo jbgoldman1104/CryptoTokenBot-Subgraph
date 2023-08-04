@@ -1,0 +1,87 @@
+type Burn @entity(immutable: true) {
+  id: Bytes!
+  sender: Bytes! # address
+  amount0: BigInt! # uint256
+  amount1: BigInt! # uint256
+  to: Bytes! # address
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type Mint @entity(immutable: true) {
+  id: Bytes!
+  sender: Bytes! # address
+  amount0: BigInt! # uint256
+  amount1: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type Swap @entity(immutable: true) {
+  id: Bytes!
+  sender: Bytes! # address
+  amount0In: BigInt! # uint256
+  amount1In: BigInt! # uint256
+  amount0Out: BigInt! # uint256
+  amount1Out: BigInt! # uint256
+  to: Bytes! # address
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type ERC20Transfer @entity(immutable: true) {
+  id: Bytes!
+  from: Bytes! # address
+  to: Bytes! # address
+  value: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type Token @entity {
+  # Token Address
+  id: ID!
+
+  poolAmount: BigInt!
+  totalLiquidity: BigInt!
+  price: BigDecimal!
+  totalHolders: BigInt!
+  txCount: BigInt!
+  totalSupply: BigInt!
+}
+
+type Pair @entity {
+  #pair address
+  id: ID!
+
+  # mirrored from the smart contract
+  token0: Token!
+  token1: Token!
+  reserve0: BigInt!
+  reserve1: BigInt!
+  totalSupply: BigInt!
+
+  # derived liquidity
+  reserveETH: BigInt!
+  reserveUSD: BigInt!
+  # used for separating per pair reserves and global
+  trackedReserveETH: BigInt!
+
+}
+
+type TokenHistory @entity {
+  id: ID!
+  token: ID!
+  poolAmount: BigInt!
+  totalLiquidity: BigInt!
+  price: BigDecimal!
+  totalHolders: BigInt!
+  txCount: BigInt!
+  totalSupply: BigInt!
+  timeInMinutes: BigInt!
+}
+
