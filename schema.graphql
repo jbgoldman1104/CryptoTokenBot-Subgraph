@@ -1,13 +1,8 @@
+type Burn @entity(immutable: true) {
   id: Bytes!
   sender: Bytes! # address
   amount0: BigInt! # uint256
   amount1: BigInt! # uint256
-  to: Bytes! # address
-  blockNumber: BigInt!
-  blockTimestamp: BigInt!
-  transactionHash: Bytes!
-}
-
 type Mint @entity(immutable: true) {
   id: Bytes!
   sender: Bytes! # address
