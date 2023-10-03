@@ -1,3 +1,4 @@
+type Burn @entity(immutable: true) {
   id: Bytes!
   sender: Bytes! # address
   amount0: BigInt! # uint256
